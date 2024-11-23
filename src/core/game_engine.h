@@ -28,13 +28,20 @@
 class GameEngine
 {
 private:
-    sf::RenderWindow _window; ///< Main rendering window for the simulation
-    sf::Event _event;         ///< Event handler for user input and window events
+    sf::RenderWindow _window;         ///< Main rendering window for the simulation
+    sf::Event _event;                 ///< Event handler for user input and window events
+    std::vector<sf::VideoMode> _mode; ///< Get devide's screen resolutions
+    sf::Font _font;                   ///< Load the font
+    sf::Text _text;                   ///< Load the texture
 
     /**
      * @brief Processes window and user input events
      */
     void _handleEvents();
+    /**
+     * @brief Loads the text from working directory
+     */
+    bool _loadFont();
 
 public:
     /**
