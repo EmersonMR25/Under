@@ -1,12 +1,12 @@
 #include "game_engine.h"
 
-GameEngine::GameEngine() : _mode(sf::VideoMode::getFullscreenModes())
+GameEngine::GameEngine() : _mode(sf::VideoMode::getDesktopMode())
 {
     // Set settings for antialiasing
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
-    this->_window.create(_mode[1], "Under", sf::Style::Default, settings);
+    this->_window.create(_mode, "Under", sf::Style::Default, settings);
     this->_window.setFramerateLimit(120);
 
     // Load the font settings
