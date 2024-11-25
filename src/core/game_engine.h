@@ -33,13 +33,15 @@ private:
     sf::VideoMode _mode;      ///< Get devide's screen resolutions
     sf::Font _font;           ///< Load the font
     sf::Text _text;           ///< Load the texture
+    sf::View _viewArea;       ///< Get the viewable area
 
+private:
     /**
      * @brief Processes window and user input events
      */
     void _handleEvents();
     /**
-     * @brief Loads the text from working directory
+     * @gibrief Loads the text from working directory
      */
     bool _loadFont();
 
