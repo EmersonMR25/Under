@@ -26,6 +26,15 @@ FetchContent_Declare(
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
+# Fetch Google Test
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
 # Collect all source files in the src directory
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
@@ -61,13 +70,14 @@ add_custom_command(
     $<TARGET_FILE_DIR:Under>/assets
 )
 
-# Enable testing framework (expand this as you add tests)
+# Enable testing framework and integrate Google Test
 enable_testing()
-add_executable(UnitTests tests/test.cpp)
-target_link_libraries(UnitTests PRIVATE sfml-graphics sfml-system)
-add_test(NAME UnitTests COMMAND UnitTests)
 
-# Notes for future:
-# 1. If you add more folders in `src/`, update the GLOB_RECURSE or manually specify new sources.
-# 2. For complex assets, consider creating an `assets/CMakeLists.txt` to handle copying per subfolder.
-# 3. Use `FetchContent` to manage additional libraries (if needed later).
+# Add UnitTests executable
+add_executable(UnitTests tests/test.cpp)
+
+# Link UnitTests with Google Test and SFML
+target_link_libraries(UnitTests PRIVATE gtest gtest_main sfml-graphics sfml-system)
+
+# Define a test using Google Test
+add_test(NAME UnitTests COMMAND UnitTests)
