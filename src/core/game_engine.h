@@ -31,8 +31,6 @@ private:
     sf::RenderWindow _window; ///< Main rendering window for the simulation
     sf::Event _event;         ///< Event handler for user input and window events
     sf::VideoMode _mode;      ///< Get devide's screen resolutions
-    sf::Font _font;           ///< Load the font
-    sf::Text _text;           ///< Load the texture
     sf::View _viewArea;       ///< Get the viewable area
 
 private:
@@ -40,10 +38,6 @@ private:
      * @brief Processes window and user input events
      */
     void _handleEvents();
-    /**
-     * @gibrief Loads the text from working directory
-     */
-    bool _loadFont();
 
 public:
     /**

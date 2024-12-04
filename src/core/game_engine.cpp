@@ -10,14 +10,11 @@ GameEngine::GameEngine() : _mode(sf::VideoMode::getDesktopMode())
     _viewArea = _window.getDefaultView();
     this->_window.setFramerateLimit(120);
 
-    // Load the font settings
-    _loadFont();
     while (this->_window.isOpen())
     {
         std::cout << "Resolution: " << this->_window.getSize().x << "," << this->_window.getSize().y << std::endl;
         _handleEvents();
         this->_window.clear();
-        this->_window.draw(this->_text);
         this->_window.display();
     }
 } // GameEngine::GameEngine()
@@ -46,19 +43,3 @@ void GameEngine::_handleEvents()
         }
     }
 } // GameEngine::_handleEvents()
-
-bool GameEngine::_loadFont()
-{
-    if (!this->_font.loadFromFile("../assets/fonts/super.ttf"))
-    {
-        std::cout << "Error: Could not load font!" << std::endl;
-        return false;
-    }
-    this->_text.setFont(this->_font);
-    this->_text.setString("Hello, world!");
-    this->_text.setCharacterSize(50);
-    this->_text.setFillColor(sf::Color::Red);
-    this->_text.setPosition(10, 10);
-    std::cout << "Font loaded successfully!" << std::endl;
-    return true;
-}
