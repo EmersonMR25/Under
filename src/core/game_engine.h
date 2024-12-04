@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <vector>
+#include "../entities/player.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
@@ -32,7 +33,7 @@ private:
     sf::Event _event;         ///< Event handler for user input and window events
     sf::VideoMode _mode;      ///< Get devide's screen resolutions
     sf::View _viewArea;       ///< Get the viewable area
-
+    Player _player;           ///< player class
 private:
     /**
      * @brief Processes window and user input events

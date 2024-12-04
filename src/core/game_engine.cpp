@@ -10,11 +10,13 @@ GameEngine::GameEngine() : _mode(sf::VideoMode::getDesktopMode())
     _viewArea = _window.getDefaultView();
     this->_window.setFramerateLimit(120);
 
+    this->_player.setInitialPosition(sf::Vector2f(0, _window.getSize().y - _player.getDimension().y));
+
     while (this->_window.isOpen())
     {
-        std::cout << "Resolution: " << this->_window.getSize().x << "," << this->_window.getSize().y << std::endl;
         _handleEvents();
         this->_window.clear();
+        this->_player.draw(_window);
         this->_window.display();
     }
 } // GameEngine::GameEngine()
@@ -33,6 +35,7 @@ void GameEngine::_handleEvents()
             {
                 this->_window.close();
             }
+            this->_player.move(this->_event);
         }
         if (this->_event.type == sf::Event::Resized)
         {
