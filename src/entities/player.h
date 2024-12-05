@@ -21,6 +21,7 @@ public:
     void move(sf::Event &event);
     void setInitialPosition(const sf::Vector2f &begPosition);
     sf::Vector2f getDimension() const;
+    sf::Vector2f getPosition() const;
 
     // Getters and Setters
 };

@@ -40,6 +40,11 @@ private:
      */
     void _handleEvents();
 
+    /**
+     * @brief Check bounds for possition of player
+     */
+    void _checkBounds();
+
 public:
     /**
      * @brief Constructs the game environment and initializes systems
