@@ -9,17 +9,19 @@
 class Player
 {
 private:
+    // Screen size
+    sf::Vector2f _screenSize;
+    // Recatagle information
     sf::RectangleShape _body;
     sf::Vector2f _rectDimmesion;
     sf::Vector2f _rectPosition;
 
 private:
 public:
-    Player();
+    Player(sf::Vector2f screenSize);
     ~Player();
     void draw(sf::RenderWindow &window);
     void move(sf::Event &event);
-    void setInitialPosition(const sf::Vector2f &begPosition);
     sf::Vector2f getDimension() const;
     sf::Vector2f getPosition() const;
 

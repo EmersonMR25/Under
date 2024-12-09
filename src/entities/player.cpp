@@ -1,7 +1,11 @@
 #include "player.h"
 
-Player::Player() : _rectDimmesion(sf::Vector2i(100, 100))
+Player::Player(sf::Vector2f screenSize) : _screenSize(screenSize),
+                                          _rectDimmesion(sf::Vector2f(200.0f, 200.0f)),
+                                          _rectPosition(sf::Vector2f(static_cast<float>(screenSize.x / 2), (screenSize.y - _rectDimmesion.y)))
 {
+    std::cout << "Y resolution: " << screenSize.y << std::endl;
+    this->_body.setPosition(_rectPosition);
     this->_body.setSize(_rectDimmesion);
     // this->_body.setPosition(sf::Vector2f(0.0f, 1080.0f));
     this->_body.setFillColor(sf::Color::Green);
@@ -33,11 +37,6 @@ void Player::move(sf::Event &_event)
         _body.move(10, 0);
     }
 } // Player::move()
-
-void Player::setInitialPosition(const sf::Vector2f &begPosition)
-{
-    _body.setPosition(begPosition);
-} // Player::setInitialPosition();
 
 sf::Vector2f Player::getDimension() const
 {
