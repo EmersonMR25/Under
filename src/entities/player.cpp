@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(sf::Vector2f screenSize)
+Player::Player(const sf::Vector2f &screenSize)
     : _screenSize(screenSize),
       _rectDimension(sf::Vector2f(200.0f, 200.0f)),
       _rectPosition(sf::Vector2f(static_cast<float>(screenSize.x / 2), screenSize.y - 200.0f))
@@ -8,19 +8,19 @@ Player::Player(sf::Vector2f screenSize)
     _body.setPosition(_rectPosition);
     _body.setSize(_rectDimension);
     _body.setFillColor(sf::Color::Green);
-}
+} // Player::Player
 
-Player::~Player() {}
+Player::~Player() {} // Player::~Player
 
 void Player::draw(sf::RenderWindow &window)
 {
     window.draw(_body);
-}
+} // PLayer::Draw
 
 void Player::update()
 {
     _checkCollisions();
-}
+} // Player::_checkCollisions
 
 void Player::move(const sf::Event &event)
 {
@@ -46,7 +46,7 @@ void Player::move(const sf::Event &event)
 
     // Update internal position after movement
     _rectPosition = _body.getPosition();
-}
+} // Player::move
 
 void Player::_checkCollisions()
 {
@@ -63,26 +63,26 @@ void Player::_checkCollisions()
         position.y = _screenSize.y - _rectDimension.y;
 
     _body.setPosition(position);
-}
+} // Player::_checkCollisions
 
 sf::Vector2f Player::getDimension() const
 {
     return _body.getSize();
-}
+} // Player::getDimension
 
 sf::Vector2f Player::getPosition() const
 {
     return _body.getPosition();
-}
+} // Player::getPosition
 
 void Player::setPosition(const sf::Vector2f &position)
 {
     _body.setPosition(position);
     _rectPosition = position;
-}
+} // Player::setPosition
 
 void Player::setDimension(const sf::Vector2f &dimension)
 {
     _body.setSize(dimension);
     _rectDimension = dimension;
-}
+} // Player::serDimension

@@ -4,12 +4,11 @@ GameEngine::GameEngine()
     : _mode(sf::VideoMode::getDesktopMode()),
       _player(sf::Vector2f(static_cast<float>(_mode.width), static_cast<float>(_mode.height)))
 {
-    // Initialize the game window with default settings
     initializeWindow(_mode.width, _mode.height, "Under");
-    this->run();
-}
+    run();
+} // GameEngine::GameEngine
 
-GameEngine::~GameEngine() {} // Destructor
+GameEngine::~GameEngine() {} // GameEngine::~GameEngine
 
 void GameEngine::initializeWindow(unsigned int width, unsigned int height, const std::string &title)
 {
@@ -25,45 +24,45 @@ void GameEngine::initializeWindow(unsigned int width, unsigned int height, const
 
     // Limit the frame rate
     _window.setFramerateLimit(120);
-}
+} // GameEngine::initializeWindow
 
 sf::Vector2u GameEngine::getWindowSize() const
 {
     return _window.getSize();
-}
+} // GameEngine::getWIndowSize
 
 sf::View GameEngine::getViewArea() const
 {
     return _viewArea;
-}
+} // GameEngine::getViewArea
 
 void GameEngine::setViewArea(const sf::View &view)
 {
     _viewArea = view;
     _window.setView(_viewArea);
-}
+} // GameEngine::setViweArea
 
 bool GameEngine::isWindowOpen() const
 {
     return _window.isOpen();
-}
+} // GameEngine::isWindowOpen
 
 Player &GameEngine::getPlayer()
 {
     return _player;
-}
+} // GameEngine::getPlayer
 
 void GameEngine::render()
 {
-    _window.clear();       // Clear the window
-    _player.draw(_window); // Render the player
-    _window.display();     // Display the frame
-}
+    _window.clear();
+    _player.draw(_window);
+    _window.display();
+} // GameEngine::render
 
 void GameEngine::update()
 {
-    _player.update(); // Update the player state
-}
+    _player.update();
+} // GameEngine::update
 
 void GameEngine::_handleEvents()
 {
@@ -77,9 +76,9 @@ void GameEngine::_handleEvents()
         {
             if (_event.key.code == sf::Keyboard::Escape)
             {
-                _window.close(); // Exit if Escape is pressed
+                _window.close();
             }
-            _player.move(_event); // Handle player movement
+            _player.move(_event);
         }
         else if (_event.type == sf::Event::Resized)
         {
@@ -91,15 +90,15 @@ void GameEngine::_handleEvents()
             _window.setView(_viewArea);
         }
     }
-}
+} // GameEngine::_handleEvents
 
 void GameEngine::run()
 {
     // Main game loop
     while (isWindowOpen())
     {
-        _handleEvents(); // Handle all events
-        update();        // Update the game state
-        render();        // Render the game frame
+        _handleEvents();
+        update();
+        render();
     }
-}
+} // GameEngine::run
