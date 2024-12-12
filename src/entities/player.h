@@ -4,6 +4,9 @@
 #define PLAYER_H
 
 // Global Constanst
+#define _GRAVITY 200.0f
+#define _JUMP_STRENGHT 100.0f
+#define _SPEED 600.0f
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -19,6 +22,8 @@ private:
     sf::RectangleShape _body;
     sf::Vector2f _rectDimension;
     sf::Vector2f _rectPosition;
+    bool _isGroundLevel;
+    sf::Vector2f _velocity;
 
 private:
     void _checkCollisions();
@@ -30,12 +35,14 @@ public:
     // Public member functions
     void draw(sf::RenderWindow &window);
     void update();
-    void move(const sf::Event &event);
+    void move(const sf::Event &event, const float &deltaTime);
     // Getters and Setters
     sf::Vector2f getDimension() const;
     sf::Vector2f getPosition() const;
     void setPosition(const sf::Vector2f &position);
     void setDimension(const sf::Vector2f &dimension);
+    bool getGroundLevel() const;
+    void setGroundLevel(const bool &state);
 };
 
 #endif // PLAYER_H

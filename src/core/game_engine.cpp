@@ -64,7 +64,7 @@ void GameEngine::update()
     _player.update();
 } // GameEngine::update
 
-void GameEngine::_handleEvents()
+void GameEngine::_handleEvents(const float &deltaTime)
 {
     while (_window.pollEvent(_event))
     {
@@ -78,7 +78,7 @@ void GameEngine::_handleEvents()
             {
                 _window.close();
             }
-            _player.move(_event);
+            _player.move(_event, deltaTime);
         }
         else if (_event.type == sf::Event::Resized)
         {
@@ -94,10 +94,13 @@ void GameEngine::_handleEvents()
 
 void GameEngine::run()
 {
+    sf::Clock clock;
     // Main game loop
     while (isWindowOpen())
     {
-        _handleEvents();
+        sf::Time elapsed = clock.restart();
+        float deltaTime = elapsed.asSeconds();
+        _handleEvents(deltaTime);
         update();
         render();
     }

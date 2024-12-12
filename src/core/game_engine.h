@@ -27,7 +27,7 @@ private:
     Player _player;
 
 private:
-    void _handleEvents();
+    void _handleEvents(const float &deltaTime);
 
 public:
     // Constructors
