@@ -4,7 +4,7 @@ Player::Player(const sf::Vector2f &screenSize)
     : _screenSize(screenSize),
       _rectDimension(sf::Vector2f(200.0f, 200.0f)),
       _rectPosition(sf::Vector2f(static_cast<float>(screenSize.x / 2), screenSize.y - 200.0f)),
-      _velocity(sf::Vector2f(static_cast<float>(_SPEED), static_cast<float>(_SPEED)))
+      _speed(sf::Vector2f(static_cast<float>(_SPEED), static_cast<float>(_SPEED)))
 {
     _body.setPosition(_rectPosition);
     _body.setSize(_rectDimension);
@@ -26,18 +26,15 @@ void Player::update()
 void Player::move(const sf::Event &event, const float &deltaTime)
 {
     // This prevents the player from suddenly stopping once another key is pressed
-    _velocity.x = 0.0f;
     if (event.type == sf::Event::KeyPressed)
     {
         if (event.key.code == sf::Keyboard::A)
         {
-            _velocity.x -= static_cast<float>(_SPEED);
-            //_body.move(static_cast<float>(-_SPEED), 0.0f);
+            _body.move(-1 * _speed.x * deltaTime, 0.0f);
         }
         else if (event.key.code == sf::Keyboard::D)
         {
-            _velocity.x += static_cast<float>(_SPEED);
-            // _body.move(static_cast<float>(_SPEED), 0.0f);
+            _body.move(1 * _speed.x * deltaTime, 0.0f);
         }
         else if (event.key.code == sf::Keyboard::Space)
         {
@@ -47,7 +44,7 @@ void Player::move(const sf::Event &event, const float &deltaTime)
     }
 
     // Update internal position after movement
-    _body.move(_velocity * deltaTime);
+    //_body.move(_rectPosition);
     _rectPosition = _body.getPosition();
 } // Player::move
 

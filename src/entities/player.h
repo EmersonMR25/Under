@@ -23,7 +23,7 @@ private:
     sf::Vector2f _rectDimension;
     sf::Vector2f _rectPosition;
     bool _isGroundLevel;
-    sf::Vector2f _velocity;
+    sf::Vector2f _speed;
 
 private:
     void _checkCollisions();
