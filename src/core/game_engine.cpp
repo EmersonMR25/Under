@@ -59,9 +59,9 @@ void GameEngine::render()
     _window.display();
 } // GameEngine::render
 
-void GameEngine::update()
+void GameEngine::update(const float &deltaTime)
 {
-    _player.update();
+    _player.update(deltaTime);
 } // GameEngine::update
 
 void GameEngine::_handleEvents(const float &deltaTime)
@@ -101,7 +101,7 @@ void GameEngine::run()
         sf::Time elapsed = clock.restart();
         float deltaTime = elapsed.asSeconds();
         _handleEvents(deltaTime);
-        update();
+        update(deltaTime);
         render();
     }
 } // GameEngine::run

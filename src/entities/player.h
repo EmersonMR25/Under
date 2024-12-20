@@ -3,10 +3,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-// Global Constanst
-#define _GRAVITY 200.0f
-#define _JUMP_STRENGHT 100.0f
-#define _SPEED 600.0f
+// Global Constants
+#define _GRAVITY 100.0f
+#define _JUMP_STRENGTH 300.0f
+#define _SPEED 100.0f
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -24,17 +24,20 @@ private:
     sf::Vector2f _rectPosition;
     bool _isGroundLevel;
     sf::Vector2f _speed;
+    sf::Vector2f _acceleration;
 
 private:
     void _checkCollisions();
+    void _jump(const float &deltaTime);
+    sf::Vector2f _newAcceleration(const sf::Vector2f &oldAcceleration, const float &deltaTime);
 
 public:
-    // Construcctors
+    // Constructors
     Player(const sf::Vector2f &screenSize);
     ~Player();
     // Public member functions
     void draw(sf::RenderWindow &window);
-    void update();
+    void update(const float &deltaTime);
     void move(const sf::Event &event, const float &deltaTime);
     // Getters and Setters
     sf::Vector2f getDimension() const;

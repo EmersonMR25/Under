@@ -43,7 +43,7 @@ public:
     bool isWindowOpen() const;
     Player &getPlayer();
     void render();
-    void update();
+    void update(const float &deltaTime);
 };
 
 #endif // GAME_ENGINE_H
