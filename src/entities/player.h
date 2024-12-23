@@ -4,8 +4,8 @@
 #define PLAYER_H
 
 // Global Constants
-#define _GRAVITY 100.0f
-#define _JUMP_STRENGTH 300.0f
+#define _GRAVITY 500.0f
+#define _JUMP_STRENGTH 500.0f
 #define _SPEED 100.0f
 
 #include <SFML/Graphics.hpp>
